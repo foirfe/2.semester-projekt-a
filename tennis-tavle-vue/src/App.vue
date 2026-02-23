@@ -1,11 +1,23 @@
-<script setup></script>
+<script setup>
+import Scoreboard from './components/Scoreboard.vue';
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+<div class="app-background">
+  <Scoreboard />
+</div>
 </template>
 
-<style scoped></style>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  background-image: url('./assets/court-background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+</style>
