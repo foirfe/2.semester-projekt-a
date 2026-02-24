@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Matematisk Login</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 400px; }
+        .error { color: red; font-weight: bold; }
+        .form-group { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <h1>Matematisk Login</h1>
+    <p>For at logge ind skal du bevise, at du kan matematik.</p>
+
+    <% if (error) { %>
+        <p class="error"><%= error %></p>
+    <% } %>
+
+    <form action="/login" method="POST">
+        <div class="form-group">
+            <label for="answer">Hvad er <strong><%= question %></strong>?</label><br><br>
+            <input type="number" id="answer" name="answer" required autofocus>
+        </div>
+        <button type="submit">Log ind</button>
+    </form>
+</body>
+</html>
