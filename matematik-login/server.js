@@ -1,16 +1,15 @@
+require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
 const app = express();
 
 
 app.set('view engine', 'ejs');
-
-
 app.use(express.urlencoded({ extended: true }));
 
 
 app.use(session({
-    secret: 'en-meget-hemmelig-noegle', 
+    secret: process.env.SESSION_SECRET, 
     resave: false,
     saveUninitialized: true
 }));
@@ -75,7 +74,7 @@ app.get('/logout', (req, res) => {
     res.redirect('/login');
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Serveren kører på http://localhost:${PORT}/login`);
+    console.log(`Serveren kører sikkert på http://localhost:${PORT}/login`);
 });

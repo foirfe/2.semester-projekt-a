@@ -2,27 +2,122 @@
 <html lang="da">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matematisk Login</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; max-width: 400px; }
-        .error { color: red; font-weight: bold; }
-        .form-group { margin-bottom: 15px; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f0f2f5; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+        }
+        /* Selve loginkortet */
+        .login-container { 
+            background-color: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1); 
+            width: 100%; 
+            max-width: 400px; 
+            text-align: center; 
+        }
+        h1 { 
+            color: #1a1a1a; 
+            margin-bottom: 8px; 
+            font-size: 24px; 
+        }
+        p.subtitle { 
+            color: #666; 
+            margin-bottom: 24px; 
+            font-size: 14px; 
+        }
+        /* Styling af fejlbeskeden */
+        .error-message { 
+            background-color: #fee2e2; 
+            color: #991b1b; 
+            padding: 12px; 
+            border-radius: 6px; 
+            margin-bottom: 20px; 
+            font-size: 14px; 
+            border-left: 4px solid #ef4444;
+            text-align: left;
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+            text-align: left; 
+        }
+        label { 
+            display: block; 
+            margin-bottom: 10px; 
+            color: #444; 
+            font-size: 16px; 
+        }
+        .math-problem { 
+            font-size: 22px; 
+            letter-spacing: 2px; 
+            color: #2563eb; 
+            background-color: #eff6ff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        input[type="number"] { 
+            width: 100%; 
+            padding: 14px; 
+            border: 2px solid #e5e7eb; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            transition: border-color 0.3s; 
+        }
+        input[type="number"]:focus { 
+            border-color: #3b82f6; 
+            outline: none; 
+        }
+        button { 
+            width: 100%; 
+            padding: 14px; 
+            background-color: #2563eb; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: background-color 0.3s, transform 0.1s; 
+            font-weight: 600;
+        }
+        button:hover { 
+            background-color: #1d4ed8; 
+        }
+        button:active {
+            transform: scale(0.98);
+        }
     </style>
 </head>
 <body>
-    <h1>Matematisk Login</h1>
-    <p>For at logge ind skal du bevise, at du kan matematik.</p>
+    <div class="login-container">
+        <h1>Matematisk Login</h1>
+        <p class="subtitle">Bekræft din identitet ved at løse opgaven herunder.</p>
 
-    <% if (error) { %>
-        <p class="error"><%= error %></p>
-    <% } %>
+        <% if (error) { %>
+            <div class="error-message">
+                <strong>Hov!</strong> <%= error %>
+            </div>
+        <% } %>
 
-    <form action="/login" method="POST">
-        <div class="form-group">
-            <label for="answer">Hvad er <strong><%= question %></strong>?</label><br><br>
-            <input type="number" id="answer" name="answer" required autofocus>
-        </div>
-        <button type="submit">Log ind</button>
-    </form>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="answer">Hvad giver <strong class="math-problem"><%= question %></strong> ?</label>
+                <input type="number" id="answer" name="answer" placeholder="Indtast dit facit..." required autofocus>
+            </div>
+            <button type="submit">Lås op og log ind</button>
+        </form>
+    </div>
 </body>
 </html>
